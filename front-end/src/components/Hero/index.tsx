@@ -48,7 +48,38 @@ const Hero = () => {
       alert("An error occurred while processing the file.");
     }
   };
-
+  const handleSteganoUpload = async () => {
+    if (!file) {
+      alert("Please select a file first!");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("file", file);
+  
+    try {
+      const response = await fetch("http://127.0.0.1:5000/predict_stegano", {
+        method: "POST",
+        body: formData,
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        setResult({
+          type: "Steganography Detection",
+          prediction: data.prediction,
+          confidence: data.confidence,
+        });
+      } else {
+        const errorData = await response.json();
+        alert(`Failed to process file: ${errorData.error}`);
+      }
+    } catch (error) {
+      console.error("Error processing file:", error);
+      alert("An error occurred while processing the file.");
+    }
+  };
+   
   // Function to clear all states
   const clearAll = () => {
     setFile(null);
@@ -150,12 +181,12 @@ const Hero = () => {
 
                     {/* Button for Detecting Steganography */}
                     <button
-                      className="min-w-[150px] px-10 py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
-                      onClick={() => alert("Detecting steganography...")}
-                      disabled={!file}
-                    >
-                      Stegano Detect
-                    </button>
+                    className="min-w-[150px] px-10 py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                    onClick={() => handleSteganoUpload()}
+                    disabled={!file}
+                  >
+                    Steganography Detect
+                  </button>
                   </div>
                   {/* Display Results */}
                   {result && (
