@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-from PIL import Image, ImageChops, ImageEnhance
+#from PIL import Image, ImageChops, ImageEnhance
 import numpy as np
 import tempfile
 import os
@@ -13,6 +13,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 # Load the trained TensorFlow model
 model = load_model("test.h5")
+stegano_model = load_model("test.h5")  # Model for detecting steganography
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -83,6 +84,36 @@ def predict():
             'raw_prediction': prediction[0].tolist()
         }), 200
     
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# 🔹 Route for steganography detection
+@app.route('/predict_stegano', methods=['POST'])
+def predict_stegano():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+
+    try:
+        # Open and preprocess the image
+        image = Image.open(file.stream)
+        processed_image = preprocess_stegano_image(image)
+
+        # Make a prediction
+        prediction = stegano_model.predict(processed_image)
+        class_labels = ['Stego', 'Real']
+        predicted_class = np.argmax(prediction[0])
+        confidence = prediction[0][predicted_class]
+
+        return jsonify({
+            'prediction': class_labels[predicted_class],
+            'confidence': float(confidence),
+            'raw_prediction': prediction[0].tolist()
+        }), 200
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

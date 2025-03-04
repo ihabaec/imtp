@@ -1,4 +1,4 @@
-// File: /home/ihab/webui/front-end/src/app/layout.tsx
+// File: C:\Users\LENOVO P16\Desktop\imtp\front-end\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
