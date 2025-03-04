@@ -69,6 +69,7 @@ const Hero = () => {
           type: "Steganography Detection",
           prediction: data.prediction,
           confidence: data.confidence,
+          raw: data.raw_prediction
         });
       } else {
         const errorData = await response.json();
@@ -198,6 +199,9 @@ const Hero = () => {
                       </p>
                     </div>
                   )}
+                  <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                    <strong>Warning:</strong> The results provided by this model are not definitive and should not be solely relied upon for image tampering detection. We are not liable for any inaccuracies or misinterpretations arising from its predictions.
+                  </p>
                 </div>
             </div>
             </div>
