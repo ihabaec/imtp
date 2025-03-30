@@ -147,15 +147,6 @@ const Hero = () => {
                     >
                       Fake Detect
                     </button>
-
-                    {/* Button for Detecting Steganography */}
-                    <button
-                      className="min-w-[150px] px-10 py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
-                      onClick={() => alert("Detecting steganography...")}
-                      disabled={!file}
-                    >
-                      Stegano Detect
-                    </button>
                   </div>
                   {/* Display Results */}
                   {result && (

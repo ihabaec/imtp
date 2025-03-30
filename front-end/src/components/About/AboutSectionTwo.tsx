@@ -32,7 +32,7 @@ const AboutSectionTwo = () => {
                   Detecting Tampered Images
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  Our AI model is trained to identify signs of tampering in digital images, ensuring authenticity and trustworthiness. Whether it's a manipulated photo or forged document, our solution provides accurate detection.
+                  Our AI model is trained to identify signs of tampering in digital images, ensuring authenticity and trustworthiness. Whether it&apos a manipulated photo or forged document, our solution provides accurate detection.
                 </p>
               </div>
 
@@ -50,7 +50,7 @@ const AboutSectionTwo = () => {
                   Built by Students, for Everyone
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                  As a team of five passionate students, we've combined our skills in AI, machine learning to create a tool that empower users to verify the integrity of their digital content.
+                  As a team of five passionate students, we&apove combined our skills in AI, machine learning to create a tool that empower users to verify the integrity of their digital content.
                 </p>
               </div>
             </div>
