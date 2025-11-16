@@ -175,7 +175,7 @@ The Flask backend runs with debug mode disabled in production. Modify [app.py](b
 imtp/
 ├── back-end/
 │   ├── app.py              # Flask application
-│   ├── test.h5             # Trained ML model
+│   ├── test.h5             # Trained ML model(MODEL IS deleted, you will have to train it on your own)
 │   ├── requirements.txt    # Python dependencies
 │   └── venv/               # Virtual environment
 ├── front-end/
